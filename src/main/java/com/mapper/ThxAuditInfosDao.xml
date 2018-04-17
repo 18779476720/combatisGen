@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ThxAuditInfosDao">
+  <resultMap id="BaseResultMap" type="com.model.ThxAuditInfos">
+    <constructor>
+      <idArg column="AUDIT_INFOID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="AUDIT_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="GOODS_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LOCALGOODS_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ORIGINAL_OEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LOCAL_OEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ACCURATE_OEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="SUPPLIER_OEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="RECEIVE_OEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="QUALITY_PRICE" javaType="java.lang.Integer" jdbcType="DECIMAL" />
+      <arg column="ORGANIZATION_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REMARK" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="STATE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CHOOSENAME_TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CHOOSEOEM_TYPE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DATE_CREATED" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="DATE_UPDATE" javaType="java.util.Date" jdbcType="DATE" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    AUDIT_INFOID, AUDIT_ID, GOODS_NAME, LOCALGOODS_NAME, ORIGINAL_OEM, LOCAL_OEM, ACCURATE_OEM, 
+    SUPPLIER_OEM, RECEIVE_OEM, QUALITY_PRICE, ORGANIZATION_CODE, REMARK, STATE, CHOOSENAME_TYPE, 
+    CHOOSEOEM_TYPE, DATE_CREATED, DATE_UPDATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from THX_AUDIT_INFOS
+    where AUDIT_INFOID = #{auditInfoid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from THX_AUDIT_INFOS
+    where AUDIT_INFOID = #{auditInfoid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.ThxAuditInfos">
+    insert into THX_AUDIT_INFOS (AUDIT_INFOID, AUDIT_ID, GOODS_NAME, 
+      LOCALGOODS_NAME, ORIGINAL_OEM, LOCAL_OEM, 
+      ACCURATE_OEM, SUPPLIER_OEM, RECEIVE_OEM, 
+      QUALITY_PRICE, ORGANIZATION_CODE, REMARK, 
+      STATE, CHOOSENAME_TYPE, CHOOSEOEM_TYPE, 
+      DATE_CREATED, DATE_UPDATE)
+    values (#{auditInfoid,jdbcType=VARCHAR}, #{auditId,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{localgoodsName,jdbcType=VARCHAR}, #{originalOem,jdbcType=VARCHAR}, #{localOem,jdbcType=VARCHAR}, 
+      #{accurateOem,jdbcType=VARCHAR}, #{supplierOem,jdbcType=VARCHAR}, #{receiveOem,jdbcType=VARCHAR}, 
+      #{qualityPrice,jdbcType=DECIMAL}, #{organizationCode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{choosenameType,jdbcType=VARCHAR}, #{chooseoemType,jdbcType=VARCHAR}, 
+      #{dateCreated,jdbcType=DATE}, #{dateUpdate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.ThxAuditInfos">
+    insert into THX_AUDIT_INFOS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="auditInfoid != null">
+        AUDIT_INFOID,
+      </if>
+      <if test="auditId != null">
+        AUDIT_ID,
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME,
+      </if>
+      <if test="localgoodsName != null">
+        LOCALGOODS_NAME,
+      </if>
+      <if test="originalOem != null">
+        ORIGINAL_OEM,
+      </if>
+      <if test="localOem != null">
+        LOCAL_OEM,
+      </if>
+      <if test="accurateOem != null">
+        ACCURATE_OEM,
+      </if>
+      <if test="supplierOem != null">
+        SUPPLIER_OEM,
+      </if>
+      <if test="receiveOem != null">
+        RECEIVE_OEM,
+      </if>
+      <if test="qualityPrice != null">
+        QUALITY_PRICE,
+      </if>
+      <if test="organizationCode != null">
+        ORGANIZATION_CODE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="choosenameType != null">
+        CHOOSENAME_TYPE,
+      </if>
+      <if test="chooseoemType != null">
+        CHOOSEOEM_TYPE,
+      </if>
+      <if test="dateCreated != null">
+        DATE_CREATED,
+      </if>
+      <if test="dateUpdate != null">
+        DATE_UPDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="auditInfoid != null">
+        #{auditInfoid,jdbcType=VARCHAR},
+      </if>
+      <if test="auditId != null">
+        #{auditId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="localgoodsName != null">
+        #{localgoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="originalOem != null">
+        #{originalOem,jdbcType=VARCHAR},
+      </if>
+      <if test="localOem != null">
+        #{localOem,jdbcType=VARCHAR},
+      </if>
+      <if test="accurateOem != null">
+        #{accurateOem,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierOem != null">
+        #{supplierOem,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveOem != null">
+        #{receiveOem,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityPrice != null">
+        #{qualityPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="organizationCode != null">
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="choosenameType != null">
+        #{choosenameType,jdbcType=VARCHAR},
+      </if>
+      <if test="chooseoemType != null">
+        #{chooseoemType,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCreated != null">
+        #{dateCreated,jdbcType=DATE},
+      </if>
+      <if test="dateUpdate != null">
+        #{dateUpdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.ThxAuditInfos">
+    update THX_AUDIT_INFOS
+    <set>
+      <if test="auditId != null">
+        AUDIT_ID = #{auditId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="localgoodsName != null">
+        LOCALGOODS_NAME = #{localgoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="originalOem != null">
+        ORIGINAL_OEM = #{originalOem,jdbcType=VARCHAR},
+      </if>
+      <if test="localOem != null">
+        LOCAL_OEM = #{localOem,jdbcType=VARCHAR},
+      </if>
+      <if test="accurateOem != null">
+        ACCURATE_OEM = #{accurateOem,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierOem != null">
+        SUPPLIER_OEM = #{supplierOem,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveOem != null">
+        RECEIVE_OEM = #{receiveOem,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityPrice != null">
+        QUALITY_PRICE = #{qualityPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="organizationCode != null">
+        ORGANIZATION_CODE = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="choosenameType != null">
+        CHOOSENAME_TYPE = #{choosenameType,jdbcType=VARCHAR},
+      </if>
+      <if test="chooseoemType != null">
+        CHOOSEOEM_TYPE = #{chooseoemType,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCreated != null">
+        DATE_CREATED = #{dateCreated,jdbcType=DATE},
+      </if>
+      <if test="dateUpdate != null">
+        DATE_UPDATE = #{dateUpdate,jdbcType=DATE},
+      </if>
+    </set>
+    where AUDIT_INFOID = #{auditInfoid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.ThxAuditInfos">
+    update THX_AUDIT_INFOS
+    set AUDIT_ID = #{auditId,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      LOCALGOODS_NAME = #{localgoodsName,jdbcType=VARCHAR},
+      ORIGINAL_OEM = #{originalOem,jdbcType=VARCHAR},
+      LOCAL_OEM = #{localOem,jdbcType=VARCHAR},
+      ACCURATE_OEM = #{accurateOem,jdbcType=VARCHAR},
+      SUPPLIER_OEM = #{supplierOem,jdbcType=VARCHAR},
+      RECEIVE_OEM = #{receiveOem,jdbcType=VARCHAR},
+      QUALITY_PRICE = #{qualityPrice,jdbcType=DECIMAL},
+      ORGANIZATION_CODE = #{organizationCode,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=VARCHAR},
+      CHOOSENAME_TYPE = #{choosenameType,jdbcType=VARCHAR},
+      CHOOSEOEM_TYPE = #{chooseoemType,jdbcType=VARCHAR},
+      DATE_CREATED = #{dateCreated,jdbcType=DATE},
+      DATE_UPDATE = #{dateUpdate,jdbcType=DATE}
+    where AUDIT_INFOID = #{auditInfoid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ThxAuditMainDao">
+  <resultMap id="BaseResultMap" type="com.model.ThxAuditMain">
+    <constructor>
+      <idArg column="AUDIT_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="INQUIRY_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ASSESSMENTNO" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DATE_FEEDBACK" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="ORG_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="VIN" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="FBROLE_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USER_ID" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="TASK_TYPE_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="DATE_CREATED" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="DATE_UPDATE" javaType="java.util.Date" jdbcType="DATE" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    AUDIT_ID, INQUIRY_CODE, ASSESSMENTNO, DATE_FEEDBACK, ORG_CODE, VIN, FBROLE_CODE, 
+    USER_ID, TASK_TYPE_CODE, DATE_CREATED, DATE_UPDATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from THX_AUDIT_MAIN
+    where AUDIT_ID = #{auditId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from THX_AUDIT_MAIN
+    where AUDIT_ID = #{auditId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.ThxAuditMain">
+    insert into THX_AUDIT_MAIN (AUDIT_ID, INQUIRY_CODE, ASSESSMENTNO, 
+      DATE_FEEDBACK, ORG_CODE, VIN, 
+      FBROLE_CODE, USER_ID, TASK_TYPE_CODE, 
+      DATE_CREATED, DATE_UPDATE)
+    values (#{auditId,jdbcType=VARCHAR}, #{inquiryCode,jdbcType=VARCHAR}, #{assessmentno,jdbcType=VARCHAR}, 
+      #{dateFeedback,jdbcType=DATE}, #{orgCode,jdbcType=VARCHAR}, #{vin,jdbcType=VARCHAR}, 
+      #{fbroleCode,jdbcType=VARCHAR}, #{userId,jdbcType=DECIMAL}, #{taskTypeCode,jdbcType=VARCHAR}, 
+      #{dateCreated,jdbcType=DATE}, #{dateUpdate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.ThxAuditMain">
+    insert into THX_AUDIT_MAIN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="auditId != null">
+        AUDIT_ID,
+      </if>
+      <if test="inquiryCode != null">
+        INQUIRY_CODE,
+      </if>
+      <if test="assessmentno != null">
+        ASSESSMENTNO,
+      </if>
+      <if test="dateFeedback != null">
+        DATE_FEEDBACK,
+      </if>
+      <if test="orgCode != null">
+        ORG_CODE,
+      </if>
+      <if test="vin != null">
+        VIN,
+      </if>
+      <if test="fbroleCode != null">
+        FBROLE_CODE,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="taskTypeCode != null">
+        TASK_TYPE_CODE,
+      </if>
+      <if test="dateCreated != null">
+        DATE_CREATED,
+      </if>
+      <if test="dateUpdate != null">
+        DATE_UPDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="auditId != null">
+        #{auditId,jdbcType=VARCHAR},
+      </if>
+      <if test="inquiryCode != null">
+        #{inquiryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assessmentno != null">
+        #{assessmentno,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFeedback != null">
+        #{dateFeedback,jdbcType=DATE},
+      </if>
+      <if test="orgCode != null">
+        #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vin != null">
+        #{vin,jdbcType=VARCHAR},
+      </if>
+      <if test="fbroleCode != null">
+        #{fbroleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="taskTypeCode != null">
+        #{taskTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCreated != null">
+        #{dateCreated,jdbcType=DATE},
+      </if>
+      <if test="dateUpdate != null">
+        #{dateUpdate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.ThxAuditMain">
+    update THX_AUDIT_MAIN
+    <set>
+      <if test="inquiryCode != null">
+        INQUIRY_CODE = #{inquiryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assessmentno != null">
+        ASSESSMENTNO = #{assessmentno,jdbcType=VARCHAR},
+      </if>
+      <if test="dateFeedback != null">
+        DATE_FEEDBACK = #{dateFeedback,jdbcType=DATE},
+      </if>
+      <if test="orgCode != null">
+        ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vin != null">
+        VIN = #{vin,jdbcType=VARCHAR},
+      </if>
+      <if test="fbroleCode != null">
+        FBROLE_CODE = #{fbroleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="taskTypeCode != null">
+        TASK_TYPE_CODE = #{taskTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCreated != null">
+        DATE_CREATED = #{dateCreated,jdbcType=DATE},
+      </if>
+      <if test="dateUpdate != null">
+        DATE_UPDATE = #{dateUpdate,jdbcType=DATE},
+      </if>
+    </set>
+    where AUDIT_ID = #{auditId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.ThxAuditMain">
+    update THX_AUDIT_MAIN
+    set INQUIRY_CODE = #{inquiryCode,jdbcType=VARCHAR},
+      ASSESSMENTNO = #{assessmentno,jdbcType=VARCHAR},
+      DATE_FEEDBACK = #{dateFeedback,jdbcType=DATE},
+      ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      VIN = #{vin,jdbcType=VARCHAR},
+      FBROLE_CODE = #{fbroleCode,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      TASK_TYPE_CODE = #{taskTypeCode,jdbcType=VARCHAR},
+      DATE_CREATED = #{dateCreated,jdbcType=DATE},
+      DATE_UPDATE = #{dateUpdate,jdbcType=DATE}
+    where AUDIT_ID = #{auditId,jdbcType=VARCHAR}
+  </update>
+</mapper>
