@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="com.batisGen" />
         <module name="combatisGen" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="combatisGen" target="1.5" />
+    <bytecodeTargetLevel target="1.7">
+      <module name="com.batisGen" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

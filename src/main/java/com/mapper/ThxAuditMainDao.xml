@@ -6,19 +6,22 @@
       <idArg column="AUDIT_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="INQUIRY_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="ASSESSMENTNO" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="DATE_FEEDBACK" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="ORG_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ORG_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="VIN" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="FBROLE_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="CAR_BRAND_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="AUDIT_REMARK" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="USER_ROLE_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="USER_ID" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
       <arg column="TASK_TYPE_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="TASK_TYPE_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="DATE_CREATED" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="DATE_UPDATE" javaType="java.util.Date" jdbcType="DATE" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    AUDIT_ID, INQUIRY_CODE, ASSESSMENTNO, DATE_FEEDBACK, ORG_CODE, VIN, FBROLE_CODE, 
-    USER_ID, TASK_TYPE_CODE, DATE_CREATED, DATE_UPDATE
+    AUDIT_ID, INQUIRY_CODE, ASSESSMENTNO, ORG_CODE, ORG_NAME, VIN, CAR_BRAND_NAME, AUDIT_REMARK, 
+    USER_ROLE_NAME, USER_ID, TASK_TYPE_CODE, TASK_TYPE_NAME, DATE_CREATED, DATE_UPDATE
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -32,12 +35,14 @@
   </delete>
   <insert id="insert" parameterType="com.model.ThxAuditMain">
     insert into THX_AUDIT_MAIN (AUDIT_ID, INQUIRY_CODE, ASSESSMENTNO, 
-      DATE_FEEDBACK, ORG_CODE, VIN, 
-      FBROLE_CODE, USER_ID, TASK_TYPE_CODE, 
+      ORG_CODE, ORG_NAME, VIN, 
+      CAR_BRAND_NAME, AUDIT_REMARK, USER_ROLE_NAME, 
+      USER_ID, TASK_TYPE_CODE, TASK_TYPE_NAME, 
       DATE_CREATED, DATE_UPDATE)
     values (#{auditId,jdbcType=VARCHAR}, #{inquiryCode,jdbcType=VARCHAR}, #{assessmentno,jdbcType=VARCHAR}, 
-      #{dateFeedback,jdbcType=DATE}, #{orgCode,jdbcType=VARCHAR}, #{vin,jdbcType=VARCHAR}, 
-      #{fbroleCode,jdbcType=VARCHAR}, #{userId,jdbcType=DECIMAL}, #{taskTypeCode,jdbcType=VARCHAR}, 
+      #{orgCode,jdbcType=VARCHAR}, #{orgName,jdbcType=VARCHAR}, #{vin,jdbcType=VARCHAR}, 
+      #{carBrandName,jdbcType=VARCHAR}, #{auditRemark,jdbcType=VARCHAR}, #{userRoleName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=DECIMAL}, #{taskTypeCode,jdbcType=VARCHAR}, #{taskTypeName,jdbcType=VARCHAR}, 
       #{dateCreated,jdbcType=DATE}, #{dateUpdate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.model.ThxAuditMain">
@@ -52,23 +57,32 @@
       <if test="assessmentno != null">
         ASSESSMENTNO,
       </if>
-      <if test="dateFeedback != null">
-        DATE_FEEDBACK,
-      </if>
       <if test="orgCode != null">
         ORG_CODE,
+      </if>
+      <if test="orgName != null">
+        ORG_NAME,
       </if>
       <if test="vin != null">
         VIN,
       </if>
-      <if test="fbroleCode != null">
-        FBROLE_CODE,
+      <if test="carBrandName != null">
+        CAR_BRAND_NAME,
+      </if>
+      <if test="auditRemark != null">
+        AUDIT_REMARK,
+      </if>
+      <if test="userRoleName != null">
+        USER_ROLE_NAME,
       </if>
       <if test="userId != null">
         USER_ID,
       </if>
       <if test="taskTypeCode != null">
         TASK_TYPE_CODE,
+      </if>
+      <if test="taskTypeName != null">
+        TASK_TYPE_NAME,
       </if>
       <if test="dateCreated != null">
         DATE_CREATED,
@@ -87,23 +101,32 @@
       <if test="assessmentno != null">
         #{assessmentno,jdbcType=VARCHAR},
       </if>
-      <if test="dateFeedback != null">
-        #{dateFeedback,jdbcType=DATE},
-      </if>
       <if test="orgCode != null">
         #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
       </if>
       <if test="vin != null">
         #{vin,jdbcType=VARCHAR},
       </if>
-      <if test="fbroleCode != null">
-        #{fbroleCode,jdbcType=VARCHAR},
+      <if test="carBrandName != null">
+        #{carBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditRemark != null">
+        #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="userRoleName != null">
+        #{userRoleName,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=DECIMAL},
       </if>
       <if test="taskTypeCode != null">
         #{taskTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskTypeName != null">
+        #{taskTypeName,jdbcType=VARCHAR},
       </if>
       <if test="dateCreated != null">
         #{dateCreated,jdbcType=DATE},
@@ -122,23 +145,32 @@
       <if test="assessmentno != null">
         ASSESSMENTNO = #{assessmentno,jdbcType=VARCHAR},
       </if>
-      <if test="dateFeedback != null">
-        DATE_FEEDBACK = #{dateFeedback,jdbcType=DATE},
-      </if>
       <if test="orgCode != null">
         ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orgName != null">
+        ORG_NAME = #{orgName,jdbcType=VARCHAR},
       </if>
       <if test="vin != null">
         VIN = #{vin,jdbcType=VARCHAR},
       </if>
-      <if test="fbroleCode != null">
-        FBROLE_CODE = #{fbroleCode,jdbcType=VARCHAR},
+      <if test="carBrandName != null">
+        CAR_BRAND_NAME = #{carBrandName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditRemark != null">
+        AUDIT_REMARK = #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="userRoleName != null">
+        USER_ROLE_NAME = #{userRoleName,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
         USER_ID = #{userId,jdbcType=DECIMAL},
       </if>
       <if test="taskTypeCode != null">
         TASK_TYPE_CODE = #{taskTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taskTypeName != null">
+        TASK_TYPE_NAME = #{taskTypeName,jdbcType=VARCHAR},
       </if>
       <if test="dateCreated != null">
         DATE_CREATED = #{dateCreated,jdbcType=DATE},
@@ -153,12 +185,15 @@
     update THX_AUDIT_MAIN
     set INQUIRY_CODE = #{inquiryCode,jdbcType=VARCHAR},
       ASSESSMENTNO = #{assessmentno,jdbcType=VARCHAR},
-      DATE_FEEDBACK = #{dateFeedback,jdbcType=DATE},
       ORG_CODE = #{orgCode,jdbcType=VARCHAR},
+      ORG_NAME = #{orgName,jdbcType=VARCHAR},
       VIN = #{vin,jdbcType=VARCHAR},
-      FBROLE_CODE = #{fbroleCode,jdbcType=VARCHAR},
+      CAR_BRAND_NAME = #{carBrandName,jdbcType=VARCHAR},
+      AUDIT_REMARK = #{auditRemark,jdbcType=VARCHAR},
+      USER_ROLE_NAME = #{userRoleName,jdbcType=VARCHAR},
       USER_ID = #{userId,jdbcType=DECIMAL},
       TASK_TYPE_CODE = #{taskTypeCode,jdbcType=VARCHAR},
+      TASK_TYPE_NAME = #{taskTypeName,jdbcType=VARCHAR},
       DATE_CREATED = #{dateCreated,jdbcType=DATE},
       DATE_UPDATE = #{dateUpdate,jdbcType=DATE}
     where AUDIT_ID = #{auditId,jdbcType=VARCHAR}

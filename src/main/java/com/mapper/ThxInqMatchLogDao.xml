@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ThxInqMatchLogDao">
+  <resultMap id="BaseResultMap" type="com.model.ThxInqMatchLog">
+    <constructor>
+      <idArg column="MATCH_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="INQUIRY_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="GOODS_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="M_GOODS_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ORIGINAL_OEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="VIN_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="M_CAR_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LOCAL_CAR_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REMARK" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_VIN_MATCH" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="IS_OEM_MATCH" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="M_LOSS_RP" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="M_MARKET_RP" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="LOCAL_SYS_RP" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="LOCAL_MARKET_RP" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="EXECUTE_WAY" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="LOCAL_OEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="GOODS_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    MATCH_ID, INQUIRY_CODE, GOODS_NAME, M_GOODS_NAME, ORIGINAL_OEM, VIN_CODE, M_CAR_NAME, 
+    LOCAL_CAR_NAME, REMARK, IS_VIN_MATCH, IS_OEM_MATCH, M_LOSS_RP, M_MARKET_RP, LOCAL_SYS_RP, 
+    LOCAL_MARKET_RP, EXECUTE_WAY, LOCAL_OEM, GOODS_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from THX_INQ_MATCH_LOG
+    where MATCH_ID = #{matchId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from THX_INQ_MATCH_LOG
+    where MATCH_ID = #{matchId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.ThxInqMatchLog">
+    insert into THX_INQ_MATCH_LOG (MATCH_ID, INQUIRY_CODE, GOODS_NAME, 
+      M_GOODS_NAME, ORIGINAL_OEM, VIN_CODE, 
+      M_CAR_NAME, LOCAL_CAR_NAME, REMARK, 
+      IS_VIN_MATCH, IS_OEM_MATCH, M_LOSS_RP, 
+      M_MARKET_RP, LOCAL_SYS_RP, LOCAL_MARKET_RP, 
+      EXECUTE_WAY, LOCAL_OEM, GOODS_ID
+      )
+    values (#{matchId,jdbcType=VARCHAR}, #{inquiryCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{mGoodsName,jdbcType=VARCHAR}, #{originalOem,jdbcType=VARCHAR}, #{vinCode,jdbcType=VARCHAR}, 
+      #{mCarName,jdbcType=VARCHAR}, #{localCarName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{isVinMatch,jdbcType=DECIMAL}, #{isOemMatch,jdbcType=DECIMAL}, #{mLossRp,jdbcType=DECIMAL}, 
+      #{mMarketRp,jdbcType=DECIMAL}, #{localSysRp,jdbcType=DECIMAL}, #{localMarketRp,jdbcType=DECIMAL}, 
+      #{executeWay,jdbcType=DECIMAL}, #{localOem,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.ThxInqMatchLog">
+    insert into THX_INQ_MATCH_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="matchId != null">
+        MATCH_ID,
+      </if>
+      <if test="inquiryCode != null">
+        INQUIRY_CODE,
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME,
+      </if>
+      <if test="mGoodsName != null">
+        M_GOODS_NAME,
+      </if>
+      <if test="originalOem != null">
+        ORIGINAL_OEM,
+      </if>
+      <if test="vinCode != null">
+        VIN_CODE,
+      </if>
+      <if test="mCarName != null">
+        M_CAR_NAME,
+      </if>
+      <if test="localCarName != null">
+        LOCAL_CAR_NAME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="isVinMatch != null">
+        IS_VIN_MATCH,
+      </if>
+      <if test="isOemMatch != null">
+        IS_OEM_MATCH,
+      </if>
+      <if test="mLossRp != null">
+        M_LOSS_RP,
+      </if>
+      <if test="mMarketRp != null">
+        M_MARKET_RP,
+      </if>
+      <if test="localSysRp != null">
+        LOCAL_SYS_RP,
+      </if>
+      <if test="localMarketRp != null">
+        LOCAL_MARKET_RP,
+      </if>
+      <if test="executeWay != null">
+        EXECUTE_WAY,
+      </if>
+      <if test="localOem != null">
+        LOCAL_OEM,
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="matchId != null">
+        #{matchId,jdbcType=VARCHAR},
+      </if>
+      <if test="inquiryCode != null">
+        #{inquiryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="mGoodsName != null">
+        #{mGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="originalOem != null">
+        #{originalOem,jdbcType=VARCHAR},
+      </if>
+      <if test="vinCode != null">
+        #{vinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mCarName != null">
+        #{mCarName,jdbcType=VARCHAR},
+      </if>
+      <if test="localCarName != null">
+        #{localCarName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isVinMatch != null">
+        #{isVinMatch,jdbcType=DECIMAL},
+      </if>
+      <if test="isOemMatch != null">
+        #{isOemMatch,jdbcType=DECIMAL},
+      </if>
+      <if test="mLossRp != null">
+        #{mLossRp,jdbcType=DECIMAL},
+      </if>
+      <if test="mMarketRp != null">
+        #{mMarketRp,jdbcType=DECIMAL},
+      </if>
+      <if test="localSysRp != null">
+        #{localSysRp,jdbcType=DECIMAL},
+      </if>
+      <if test="localMarketRp != null">
+        #{localMarketRp,jdbcType=DECIMAL},
+      </if>
+      <if test="executeWay != null">
+        #{executeWay,jdbcType=DECIMAL},
+      </if>
+      <if test="localOem != null">
+        #{localOem,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.ThxInqMatchLog">
+    update THX_INQ_MATCH_LOG
+    <set>
+      <if test="inquiryCode != null">
+        INQUIRY_CODE = #{inquiryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="mGoodsName != null">
+        M_GOODS_NAME = #{mGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="originalOem != null">
+        ORIGINAL_OEM = #{originalOem,jdbcType=VARCHAR},
+      </if>
+      <if test="vinCode != null">
+        VIN_CODE = #{vinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mCarName != null">
+        M_CAR_NAME = #{mCarName,jdbcType=VARCHAR},
+      </if>
+      <if test="localCarName != null">
+        LOCAL_CAR_NAME = #{localCarName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isVinMatch != null">
+        IS_VIN_MATCH = #{isVinMatch,jdbcType=DECIMAL},
+      </if>
+      <if test="isOemMatch != null">
+        IS_OEM_MATCH = #{isOemMatch,jdbcType=DECIMAL},
+      </if>
+      <if test="mLossRp != null">
+        M_LOSS_RP = #{mLossRp,jdbcType=DECIMAL},
+      </if>
+      <if test="mMarketRp != null">
+        M_MARKET_RP = #{mMarketRp,jdbcType=DECIMAL},
+      </if>
+      <if test="localSysRp != null">
+        LOCAL_SYS_RP = #{localSysRp,jdbcType=DECIMAL},
+      </if>
+      <if test="localMarketRp != null">
+        LOCAL_MARKET_RP = #{localMarketRp,jdbcType=DECIMAL},
+      </if>
+      <if test="executeWay != null">
+        EXECUTE_WAY = #{executeWay,jdbcType=DECIMAL},
+      </if>
+      <if test="localOem != null">
+        LOCAL_OEM = #{localOem,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MATCH_ID = #{matchId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.ThxInqMatchLog">
+    update THX_INQ_MATCH_LOG
+    set INQUIRY_CODE = #{inquiryCode,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      M_GOODS_NAME = #{mGoodsName,jdbcType=VARCHAR},
+      ORIGINAL_OEM = #{originalOem,jdbcType=VARCHAR},
+      VIN_CODE = #{vinCode,jdbcType=VARCHAR},
+      M_CAR_NAME = #{mCarName,jdbcType=VARCHAR},
+      LOCAL_CAR_NAME = #{localCarName,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      IS_VIN_MATCH = #{isVinMatch,jdbcType=DECIMAL},
+      IS_OEM_MATCH = #{isOemMatch,jdbcType=DECIMAL},
+      M_LOSS_RP = #{mLossRp,jdbcType=DECIMAL},
+      M_MARKET_RP = #{mMarketRp,jdbcType=DECIMAL},
+      LOCAL_SYS_RP = #{localSysRp,jdbcType=DECIMAL},
+      LOCAL_MARKET_RP = #{localMarketRp,jdbcType=DECIMAL},
+      EXECUTE_WAY = #{executeWay,jdbcType=DECIMAL},
+      LOCAL_OEM = #{localOem,jdbcType=VARCHAR},
+      GOODS_ID = #{goodsId,jdbcType=VARCHAR}
+    where MATCH_ID = #{matchId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.model.ThxInqMatchLog">
+    <constructor>
+      <idArg column="MATCH_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="INQUIRY_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="GOODS_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="M_GOODS_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ORIGINAL_OEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="VIN_CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="M_CAR_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="LOCAL_CAR_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="REMARK" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="IS_VIN_MATCH" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="IS_OEM_MATCH" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="M_LOSS_RP" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="M_MARKET_RP" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="LOCAL_SYS_RP" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="LOCAL_MARKET_RP" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="EXECUTE_WAY" javaType="java.lang.Short" jdbcType="DECIMAL" />
+      <arg column="LOCAL_OEM" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="GOODS_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    MATCH_ID, INQUIRY_CODE, GOODS_NAME, M_GOODS_NAME, ORIGINAL_OEM, VIN_CODE, M_CAR_NAME, 
+    LOCAL_CAR_NAME, REMARK, IS_VIN_MATCH, IS_OEM_MATCH, M_LOSS_RP, M_MARKET_RP, LOCAL_SYS_RP, 
+    LOCAL_MARKET_RP, EXECUTE_WAY, LOCAL_OEM, GOODS_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from THX_INQ_MATCH_LOG
+    where MATCH_ID = #{matchId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from THX_INQ_MATCH_LOG
+    where MATCH_ID = #{matchId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.ThxInqMatchLog">
+    insert into THX_INQ_MATCH_LOG (MATCH_ID, INQUIRY_CODE, GOODS_NAME, 
+      M_GOODS_NAME, ORIGINAL_OEM, VIN_CODE, 
+      M_CAR_NAME, LOCAL_CAR_NAME, REMARK, 
+      IS_VIN_MATCH, IS_OEM_MATCH, M_LOSS_RP, 
+      M_MARKET_RP, LOCAL_SYS_RP, LOCAL_MARKET_RP, 
+      EXECUTE_WAY, LOCAL_OEM, GOODS_ID
+      )
+    values (#{matchId,jdbcType=VARCHAR}, #{inquiryCode,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{mGoodsName,jdbcType=VARCHAR}, #{originalOem,jdbcType=VARCHAR}, #{vinCode,jdbcType=VARCHAR}, 
+      #{mCarName,jdbcType=VARCHAR}, #{localCarName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{isVinMatch,jdbcType=DECIMAL}, #{isOemMatch,jdbcType=DECIMAL}, #{mLossRp,jdbcType=DECIMAL}, 
+      #{mMarketRp,jdbcType=DECIMAL}, #{localSysRp,jdbcType=DECIMAL}, #{localMarketRp,jdbcType=DECIMAL}, 
+      #{executeWay,jdbcType=DECIMAL}, #{localOem,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.ThxInqMatchLog">
+    insert into THX_INQ_MATCH_LOG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="matchId != null">
+        MATCH_ID,
+      </if>
+      <if test="inquiryCode != null">
+        INQUIRY_CODE,
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME,
+      </if>
+      <if test="mGoodsName != null">
+        M_GOODS_NAME,
+      </if>
+      <if test="originalOem != null">
+        ORIGINAL_OEM,
+      </if>
+      <if test="vinCode != null">
+        VIN_CODE,
+      </if>
+      <if test="mCarName != null">
+        M_CAR_NAME,
+      </if>
+      <if test="localCarName != null">
+        LOCAL_CAR_NAME,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="isVinMatch != null">
+        IS_VIN_MATCH,
+      </if>
+      <if test="isOemMatch != null">
+        IS_OEM_MATCH,
+      </if>
+      <if test="mLossRp != null">
+        M_LOSS_RP,
+      </if>
+      <if test="mMarketRp != null">
+        M_MARKET_RP,
+      </if>
+      <if test="localSysRp != null">
+        LOCAL_SYS_RP,
+      </if>
+      <if test="localMarketRp != null">
+        LOCAL_MARKET_RP,
+      </if>
+      <if test="executeWay != null">
+        EXECUTE_WAY,
+      </if>
+      <if test="localOem != null">
+        LOCAL_OEM,
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="matchId != null">
+        #{matchId,jdbcType=VARCHAR},
+      </if>
+      <if test="inquiryCode != null">
+        #{inquiryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="mGoodsName != null">
+        #{mGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="originalOem != null">
+        #{originalOem,jdbcType=VARCHAR},
+      </if>
+      <if test="vinCode != null">
+        #{vinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mCarName != null">
+        #{mCarName,jdbcType=VARCHAR},
+      </if>
+      <if test="localCarName != null">
+        #{localCarName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isVinMatch != null">
+        #{isVinMatch,jdbcType=DECIMAL},
+      </if>
+      <if test="isOemMatch != null">
+        #{isOemMatch,jdbcType=DECIMAL},
+      </if>
+      <if test="mLossRp != null">
+        #{mLossRp,jdbcType=DECIMAL},
+      </if>
+      <if test="mMarketRp != null">
+        #{mMarketRp,jdbcType=DECIMAL},
+      </if>
+      <if test="localSysRp != null">
+        #{localSysRp,jdbcType=DECIMAL},
+      </if>
+      <if test="localMarketRp != null">
+        #{localMarketRp,jdbcType=DECIMAL},
+      </if>
+      <if test="executeWay != null">
+        #{executeWay,jdbcType=DECIMAL},
+      </if>
+      <if test="localOem != null">
+        #{localOem,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.ThxInqMatchLog">
+    update THX_INQ_MATCH_LOG
+    <set>
+      <if test="inquiryCode != null">
+        INQUIRY_CODE = #{inquiryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="mGoodsName != null">
+        M_GOODS_NAME = #{mGoodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="originalOem != null">
+        ORIGINAL_OEM = #{originalOem,jdbcType=VARCHAR},
+      </if>
+      <if test="vinCode != null">
+        VIN_CODE = #{vinCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mCarName != null">
+        M_CAR_NAME = #{mCarName,jdbcType=VARCHAR},
+      </if>
+      <if test="localCarName != null">
+        LOCAL_CAR_NAME = #{localCarName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isVinMatch != null">
+        IS_VIN_MATCH = #{isVinMatch,jdbcType=DECIMAL},
+      </if>
+      <if test="isOemMatch != null">
+        IS_OEM_MATCH = #{isOemMatch,jdbcType=DECIMAL},
+      </if>
+      <if test="mLossRp != null">
+        M_LOSS_RP = #{mLossRp,jdbcType=DECIMAL},
+      </if>
+      <if test="mMarketRp != null">
+        M_MARKET_RP = #{mMarketRp,jdbcType=DECIMAL},
+      </if>
+      <if test="localSysRp != null">
+        LOCAL_SYS_RP = #{localSysRp,jdbcType=DECIMAL},
+      </if>
+      <if test="localMarketRp != null">
+        LOCAL_MARKET_RP = #{localMarketRp,jdbcType=DECIMAL},
+      </if>
+      <if test="executeWay != null">
+        EXECUTE_WAY = #{executeWay,jdbcType=DECIMAL},
+      </if>
+      <if test="localOem != null">
+        LOCAL_OEM = #{localOem,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MATCH_ID = #{matchId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.ThxInqMatchLog">
+    update THX_INQ_MATCH_LOG
+    set INQUIRY_CODE = #{inquiryCode,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      M_GOODS_NAME = #{mGoodsName,jdbcType=VARCHAR},
+      ORIGINAL_OEM = #{originalOem,jdbcType=VARCHAR},
+      VIN_CODE = #{vinCode,jdbcType=VARCHAR},
+      M_CAR_NAME = #{mCarName,jdbcType=VARCHAR},
+      LOCAL_CAR_NAME = #{localCarName,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      IS_VIN_MATCH = #{isVinMatch,jdbcType=DECIMAL},
+      IS_OEM_MATCH = #{isOemMatch,jdbcType=DECIMAL},
+      M_LOSS_RP = #{mLossRp,jdbcType=DECIMAL},
+      M_MARKET_RP = #{mMarketRp,jdbcType=DECIMAL},
+      LOCAL_SYS_RP = #{localSysRp,jdbcType=DECIMAL},
+      LOCAL_MARKET_RP = #{localMarketRp,jdbcType=DECIMAL},
+      EXECUTE_WAY = #{executeWay,jdbcType=DECIMAL},
+      LOCAL_OEM = #{localOem,jdbcType=VARCHAR},
+      GOODS_ID = #{goodsId,jdbcType=VARCHAR}
+    where MATCH_ID = #{matchId,jdbcType=VARCHAR}
+  </update>
+</mapper>

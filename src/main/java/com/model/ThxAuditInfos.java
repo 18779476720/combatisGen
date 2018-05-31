@@ -1,11 +1,18 @@
 package com.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ThxAuditInfos {
     private String auditInfoid;
 
     private String auditId;
+
+    private String goodsId;
+
+    private String jyId;
+
+    private String assessmentno;
 
     private String goodsName;
 
@@ -21,9 +28,11 @@ public class ThxAuditInfos {
 
     private String receiveOem;
 
-    private Integer qualityPrice;
+    private BigDecimal qualityPrice;
 
     private String organizationCode;
+
+    private String pictureId;
 
     private String remark;
 
@@ -33,13 +42,20 @@ public class ThxAuditInfos {
 
     private String chooseoemType;
 
+    private String auditNameType;
+
+    private String auditOemType;
+
     private Date dateCreated;
 
     private Date dateUpdate;
 
-    public ThxAuditInfos(String auditInfoid, String auditId, String goodsName, String localgoodsName, String originalOem, String localOem, String accurateOem, String supplierOem, String receiveOem, Integer qualityPrice, String organizationCode, String remark, String state, String choosenameType, String chooseoemType, Date dateCreated, Date dateUpdate) {
+    public ThxAuditInfos(String auditInfoid, String auditId, String goodsId, String jyId, String assessmentno, String goodsName, String localgoodsName, String originalOem, String localOem, String accurateOem, String supplierOem, String receiveOem, BigDecimal qualityPrice, String organizationCode, String pictureId, String remark, String state, String choosenameType, String chooseoemType, String auditNameType, String auditOemType, Date dateCreated, Date dateUpdate) {
         this.auditInfoid = auditInfoid;
         this.auditId = auditId;
+        this.goodsId = goodsId;
+        this.jyId = jyId;
+        this.assessmentno = assessmentno;
         this.goodsName = goodsName;
         this.localgoodsName = localgoodsName;
         this.originalOem = originalOem;
@@ -49,10 +65,13 @@ public class ThxAuditInfos {
         this.receiveOem = receiveOem;
         this.qualityPrice = qualityPrice;
         this.organizationCode = organizationCode;
+        this.pictureId = pictureId;
         this.remark = remark;
         this.state = state;
         this.choosenameType = choosenameType;
         this.chooseoemType = chooseoemType;
+        this.auditNameType = auditNameType;
+        this.auditOemType = auditOemType;
         this.dateCreated = dateCreated;
         this.dateUpdate = dateUpdate;
     }
@@ -75,6 +94,30 @@ public class ThxAuditInfos {
 
     public void setAuditId(String auditId) {
         this.auditId = auditId == null ? null : auditId.trim();
+    }
+
+    public String getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(String goodsId) {
+        this.goodsId = goodsId == null ? null : goodsId.trim();
+    }
+
+    public String getJyId() {
+        return jyId;
+    }
+
+    public void setJyId(String jyId) {
+        this.jyId = jyId == null ? null : jyId.trim();
+    }
+
+    public String getAssessmentno() {
+        return assessmentno;
+    }
+
+    public void setAssessmentno(String assessmentno) {
+        this.assessmentno = assessmentno == null ? null : assessmentno.trim();
     }
 
     public String getGoodsName() {
@@ -133,11 +176,11 @@ public class ThxAuditInfos {
         this.receiveOem = receiveOem == null ? null : receiveOem.trim();
     }
 
-    public Integer getQualityPrice() {
+    public BigDecimal getQualityPrice() {
         return qualityPrice;
     }
 
-    public void setQualityPrice(Integer qualityPrice) {
+    public void setQualityPrice(BigDecimal qualityPrice) {
         this.qualityPrice = qualityPrice;
     }
 
@@ -147,6 +190,14 @@ public class ThxAuditInfos {
 
     public void setOrganizationCode(String organizationCode) {
         this.organizationCode = organizationCode == null ? null : organizationCode.trim();
+    }
+
+    public String getPictureId() {
+        return pictureId;
+    }
+
+    public void setPictureId(String pictureId) {
+        this.pictureId = pictureId == null ? null : pictureId.trim();
     }
 
     public String getRemark() {
@@ -179,6 +230,22 @@ public class ThxAuditInfos {
 
     public void setChooseoemType(String chooseoemType) {
         this.chooseoemType = chooseoemType == null ? null : chooseoemType.trim();
+    }
+
+    public String getAuditNameType() {
+        return auditNameType;
+    }
+
+    public void setAuditNameType(String auditNameType) {
+        this.auditNameType = auditNameType == null ? null : auditNameType.trim();
+    }
+
+    public String getAuditOemType() {
+        return auditOemType;
+    }
+
+    public void setAuditOemType(String auditOemType) {
+        this.auditOemType = auditOemType == null ? null : auditOemType.trim();
     }
 
     public Date getDateCreated() {

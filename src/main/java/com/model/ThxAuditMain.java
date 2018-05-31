@@ -10,32 +10,41 @@ public class ThxAuditMain {
 
     private String assessmentno;
 
-    private Date dateFeedback;
-
     private String orgCode;
+
+    private String orgName;
 
     private String vin;
 
-    private String fbroleCode;
+    private String carBrandName;
+
+    private String auditRemark;
+
+    private String userRoleName;
 
     private BigDecimal userId;
 
     private String taskTypeCode;
 
+    private String taskTypeName;
+
     private Date dateCreated;
 
     private Date dateUpdate;
 
-    public ThxAuditMain(String auditId, String inquiryCode, String assessmentno, Date dateFeedback, String orgCode, String vin, String fbroleCode, BigDecimal userId, String taskTypeCode, Date dateCreated, Date dateUpdate) {
+    public ThxAuditMain(String auditId, String inquiryCode, String assessmentno, String orgCode, String orgName, String vin, String carBrandName, String auditRemark, String userRoleName, BigDecimal userId, String taskTypeCode, String taskTypeName, Date dateCreated, Date dateUpdate) {
         this.auditId = auditId;
         this.inquiryCode = inquiryCode;
         this.assessmentno = assessmentno;
-        this.dateFeedback = dateFeedback;
         this.orgCode = orgCode;
+        this.orgName = orgName;
         this.vin = vin;
-        this.fbroleCode = fbroleCode;
+        this.carBrandName = carBrandName;
+        this.auditRemark = auditRemark;
+        this.userRoleName = userRoleName;
         this.userId = userId;
         this.taskTypeCode = taskTypeCode;
+        this.taskTypeName = taskTypeName;
         this.dateCreated = dateCreated;
         this.dateUpdate = dateUpdate;
     }
@@ -68,20 +77,20 @@ public class ThxAuditMain {
         this.assessmentno = assessmentno == null ? null : assessmentno.trim();
     }
 
-    public Date getDateFeedback() {
-        return dateFeedback;
-    }
-
-    public void setDateFeedback(Date dateFeedback) {
-        this.dateFeedback = dateFeedback;
-    }
-
     public String getOrgCode() {
         return orgCode;
     }
 
     public void setOrgCode(String orgCode) {
         this.orgCode = orgCode == null ? null : orgCode.trim();
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName == null ? null : orgName.trim();
     }
 
     public String getVin() {
@@ -92,12 +101,28 @@ public class ThxAuditMain {
         this.vin = vin == null ? null : vin.trim();
     }
 
-    public String getFbroleCode() {
-        return fbroleCode;
+    public String getCarBrandName() {
+        return carBrandName;
     }
 
-    public void setFbroleCode(String fbroleCode) {
-        this.fbroleCode = fbroleCode == null ? null : fbroleCode.trim();
+    public void setCarBrandName(String carBrandName) {
+        this.carBrandName = carBrandName == null ? null : carBrandName.trim();
+    }
+
+    public String getAuditRemark() {
+        return auditRemark;
+    }
+
+    public void setAuditRemark(String auditRemark) {
+        this.auditRemark = auditRemark == null ? null : auditRemark.trim();
+    }
+
+    public String getUserRoleName() {
+        return userRoleName;
+    }
+
+    public void setUserRoleName(String userRoleName) {
+        this.userRoleName = userRoleName == null ? null : userRoleName.trim();
     }
 
     public BigDecimal getUserId() {
@@ -114,6 +139,14 @@ public class ThxAuditMain {
 
     public void setTaskTypeCode(String taskTypeCode) {
         this.taskTypeCode = taskTypeCode == null ? null : taskTypeCode.trim();
+    }
+
+    public String getTaskTypeName() {
+        return taskTypeName;
+    }
+
+    public void setTaskTypeName(String taskTypeName) {
+        this.taskTypeName = taskTypeName == null ? null : taskTypeName.trim();
     }
 
     public Date getDateCreated() {
